@@ -20,7 +20,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
 import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -28,22 +27,21 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 @Path("/servicea")
 public class ServiceA {
 
-    // TODO
     // Por meio de injeção de dependência,
     // instancie o Rest Cliente para o serviço B
 
     // CDI
     @Inject
     @RestClient
-
-    private Person person;
+    ServiceRemote serviceRemote;
 
     @GET
     @Path("/person/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getPerson(@PathParam("name") String name)
+    public Person getPerson(@PathParam("name") String name)
     {
-        return person.getName(name);
+        // Retorna o objeto Person do serviço B
+        return serviceRemote.getPerson(name);
     }
 
 }
