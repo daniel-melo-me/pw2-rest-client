@@ -35,7 +35,7 @@ public class ProjectTest {
         .port(8080)
         .when().get("/serviceb/person/Rodrigo")
         .then()
-           .statusCode(500)
+           .statusCode(200)
            .body(is("{\"name\":\"Rodrigo\"}"));
     }
 
@@ -45,7 +45,7 @@ public class ProjectTest {
         given()
         .when().get("/servicea/person/Rodrigo")
         .then()
-           .statusCode(500)
+           .statusCode(200)
            .body(is("{\"name\":\"Rodrigo\"}"));
     }
 
